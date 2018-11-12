@@ -16,6 +16,21 @@ module rot(x=0, y=0, z=0)
     children();
 }
 
+module CylinderCog(length=10, r=5, n=6)
+{
+	difference()
+	{
+		cylinder(h=length, r=r, center=true);
+		for (i = [0:n]) rot(z=i*360/n)
+		difference()
+		{
+			rot(z=-90/n) cube(length+2*r);
+			rot(z=+90/n) cube(length+2*r);
+		}
+	}
+}
+
+
 module Attachment (depth=6.5, angle=25, bottom=false)
 {
     rot(y=-angle+(bottom?180:0))
