@@ -1,7 +1,7 @@
 $fs = 0.1;
 main_width = 6;
 main_height = 8;
-sprue=true;
+sprue=false;
 
 
 module mov(x=0, y=0, z=0)
@@ -22,11 +22,7 @@ module CylinderCog(length=10, r=5, n=6)
 	{
 		cylinder(h=length, r=r, center=true);
 		for (i = [0:n]) rot(z=i*360/n)
-		difference()
-		{
-			rot(z=-90/n) cube(length+2*r);
-			rot(z=+90/n) cube(length+2*r);
-		}
+			linear_extrude(h=length) polygon(points=[[0,0], [2*r*cos(90/n), 2*r*sin(90/n)], [2*r*cos(90/n), -2*r*sin(90/n)]]);
 	}
 }
 
