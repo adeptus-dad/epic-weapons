@@ -16,6 +16,8 @@ module OuterShell(h=10, d1=10, d2=9, separation=6)
 		DoubleCylinder(h=h, d1=d1, d2=d2, separation=separation);
 		DoubleCylinder(h=h+20, d1=d1-1, d2=d2-1, separation=separation);
 		mov(x=-3,z=4) cube([3,20,4], center=true);
+		mov(x=d1/2,z=-4.8) for (a=[0:1.2:6]) mov(z=a) cube([d1,2*d1,0.5], center=true);
+		mov(x=-separation-d2/2,z=-4.8) for (a=[0:1.2:6]) mov(z=a) cube([d2,2*d2,0.5], center=true);
 	}
 }
 
@@ -39,7 +41,7 @@ module vents(length=15)
     for (advance=[0:2:length-8])
         mov(z=advance) 
         rot(x=60) rot(y=-30)
-        difference() { cylinder(h=5.5,d=1.5); mov(z=3) cylinder(h=4,d=1); }
+        difference() { cylinder(h=5.5,d1=1.5,d2=2.5); mov(z=4.5) cylinder(h=3.5,d1=1,d2=2.5); }
 }
 
 module RocketLauncher(h=10, d1=11, d2=9, separation=6)
