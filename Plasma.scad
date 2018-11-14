@@ -50,7 +50,12 @@ module PlasmaBarrel(length=20)
             }
 }
 
-mov(x=-4) Attachment();
-Attachment(bottom=true);
-rot(y=90) WeaponBody();
-rot(y=90) mov(z=0.5) PlasmaBarrel();
+module PlasmaCannon()
+{
+	mov(x=-4) Attachment();
+	Attachment(bottom=true);
+	rot(y=90) WeaponBody();
+	rot(y=90) mov(z=0.5) PlasmaBarrel();
+}
+
+PlasmaCannon();

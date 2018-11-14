@@ -29,7 +29,14 @@ module LaserAssembly()
 	mov(x=main_height*0.2, y=-main_width*0.25) 	LaserBarrel();
 }
 
-mov(x=-4) Attachment();
-Attachment(bottom=true);
-rot(y=90) WeaponBody();
-rot(y=90) mov(z=0.5) LaserAssembly();
+
+
+module Multilaser()
+{
+	mov(x=-4) Attachment();
+	Attachment(bottom=true);
+	rot(y=90) WeaponBody();
+	rot(y=90) mov(z=0.5) LaserAssembly();
+}
+
+Multilaser();

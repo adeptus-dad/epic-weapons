@@ -1,7 +1,7 @@
 $fs = 0.1;
 main_width = 6;
 main_height = 8;
-
+sprue=true;
 
 
 module mov(x=0, y=0, z=0)
@@ -31,7 +31,7 @@ module CylinderCog(length=10, r=5, n=6)
 }
 
 
-module Attachment (depth=6.5, angle=25, bottom=false)
+module Attachment(depth=6.5, angle=25, bottom=false)
 {
     rot(y=-angle+(bottom?180:0))
     {
@@ -46,6 +46,10 @@ module Attachment (depth=6.5, angle=25, bottom=false)
                 translate([3, 0, 0])
                 circle(r = 0.6);
         }
+		if (sprue)
+		{
+			cylinder(h=15, d=1);
+		}
     }
 }
 
@@ -75,7 +79,17 @@ module WeaponBody(length=17)
         mov(z=tank) rot(x=90) sphere(r=tank, $fn=96);
         sphere(r=tank);
     }
+	
+	minkowski()
+	{
+		sphere(0.3);
+		mov(z=-10.6) cylinder(h=2, d=1.5);	
+	}
+	
+	mov(z=-9.8) for (i=[0:30:360]) rot(z=i) mov(y=3) sphere(0.3);
     
+	mov(x=-0.8,z=-2.5) for (i=[0:1:3]) mov(z=i) cube([2,main_width+1,0.6], center=true);
+	
     module vents()
     {
         for (advance=[0:2:length-8])
